@@ -34,6 +34,8 @@ class MyApp < Sinatra::Base
 	if session[:uid]
 	  @user = client.users.show_by_uid(session[:uid]) 
 	  @statuses = client.statuses
+	  @direct_messages=client.direct_messages
+	  @client=client
 	end
 
 	erb :index

@@ -12,14 +12,21 @@
 <br /><br />
 
 <span style="color:red">发送微博：</span>
+<%if session[:uid]%>
 <form action="/update" method="post" enctype="multipart/form-data">
   <textarea name="status" id="status" cols="62" rows="5">
   </textarea><br />
   <input type="file" name="file" id="file" /><br />
   <input type="submit" value="发送"/><br />
 </form>
+<%end%>
 <br /><br />
 
+<span style="color:red">我的私信：</span><br /><br />
+<%if session[:uid]%>
+  <%#@direct_messages.messages.each do |s|%>
+  <%#end%>
+<%end%>
 
 <span style="color:red">我关注人的微博：</span><br /><br />
 <%if session[:uid]%>
