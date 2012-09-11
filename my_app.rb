@@ -1,5 +1,13 @@
 class MyApp < Sinatra::Base
-  get "/" do
-    'Hello World!'
+  enable :sessions
+
+  configure :development do
+    register Sinatra::Reloader
   end
+
+  get "/" do
+    erb :index
+  end
+
+
 end
