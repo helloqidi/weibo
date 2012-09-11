@@ -1,1 +1,42 @@
-<a href="#">链接到微博</a>
+<script src="http://tjs.sjs.sinajs.cn/t35/apps/opent/js/frames/client.js" language="JavaScript"></script>
+
+<%if session[:uid]%>
+  <a href="/logout">退出</a>
+<%else%>
+  <a href="/connect">链接到微博</a>
+<%end%>
+<br /><br />
+
+<span style="color:red">姓名：</span>
+<%=@user.screen_name if @user%>
+<br /><br />
+
+<span style="color:red">发送微博：</span>
+<form action="/update" method="post" enctype="multipart/form-data">
+  <textarea name="status" id="status" cols="62" rows="5">
+  </textarea><br />
+  <input type="file" name="file" id="file" /><br />
+  <input type="submit" value="发送"/><br />
+</form>
+<br /><br />
+
+
+<span style="color:red">我关注人的微博：</span><br /><br />
+<%if session[:uid]%>
+  <%@statuses.friends_timeline.statuses.each_with_index do |status,index|%>
+	编号：
+	<span style="color:red"><%=index+1%></span><br />
+	文字：
+	<%=status.text%><br />
+	图片：
+	<%if status.bmiddle_pic%>
+	  <img src="<%=status.bmiddle_pic%>" />
+	<%end%><br />
+	时间：
+	<%=Time.parse(status.created_at)%><br />
+	发送者:
+	<%=status.user.screen_name%><br />
+	来源：
+	<%=status.source%><br />
+  <%end%>
+<%end%><br ><br />
