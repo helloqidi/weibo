@@ -1,3 +1,4 @@
+# config.ru (run with rackup)
 require "bundler"
 Bundler.require
 
